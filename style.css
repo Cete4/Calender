@@ -1,0 +1,45 @@
+/*
+Format for the h1 tag which is used as the headers
+*/
+h1{
+    text-align: center;
+    font-family: monospace;
+    color: black;
+}
+
+/*
+Format for the h3 tag which is used as the description
+*/
+h3{
+    text-align: center;
+    font-family: monospace;
+    color: black;
+}
+
+/*
+Format for the p tag only used for the times on the left hand col
+*/
+p{
+    margin: 6px;
+}
+
+/*
+Format for the textareas
+*/
+textarea{
+    width: 100%;
+    height: 5%;
+}
+
+/*
+Format for the buttons used as the save icon primarily
+*/
+button{
+    width: 200%;
+    border-left: 1px solid black;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #06AED5;
+    color: white;  
+    padding: 2px;
+}

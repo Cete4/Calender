@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Daily Calender</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row max-width">
+            <header class="col-12">
+                <h1 id="mainTitle">
+                    Work Day Planner
+                </h1>
+            </header>
+        </div>
+        <div class="row max-width">
+            <div class="col-12">
+                <h3 id="description">
+                    A schedule for
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <!--This col will contain all the times-->
+            <div id="times" class="col-1">
+
+            </div>
+            <!--This col will contain all the textAreas-->
+            <div id="input" class="col-10">
+
+            </div>
+            <!--This col will contain all the save buttons-->
+            <div id="save" class="col-1">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="moment.js"></script>
+    <script src="./script.js"></script>
+    <script type="text/javascript">
+
+        /*
+        Global Variables
+        */
+        var time = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
+
+        var inputArea = [$("<textarea id='9'class='form' type='text'>"), $("<textarea id='10'class='form' type='text'>"), $("<textarea id='11'class='form' type='text'>"), $("<textarea id='12'class='form' type='text'>"), $("<textarea id='13'class='form' type='text'>"), $("<textarea id='14'class='form' type='text'>"), $("<textarea id='15'class='form' type='text'>"), $("<textarea id='16'class='form' type='text'>"), $("<textarea id='17'class='form' type='text'>")];
+
+        var saveButton = [$("<button id='9' onclick='saveInputArea(0)'>"), $("<button id='10' onclick='saveInputArea(1)'>"), $("<button id='11' onclick='saveInputArea(2)'>"), $("<button id='12' onclick='saveInputArea(3)'>"), $("<button id='b13' onclick='saveInputArea(4)'>"), $("<button id='14' onclick='saveInputArea(5)'>"), $("<button id='15' onclick='saveInputArea(6)'>"), $("<button id='16' onclick='saveInputArea(7)'>"), $("<button id='17' onclick='saveInputArea(8)'>")];
+        var times = $("#times");
+
+        //This function will set the entire planner when the page loads
+        function renderPlanner() {
+            $("#times").empty();
+
+
+            //Loops through the work hours to set the template
+            for (var i = 0; i < time.length; i++) {
+
+
+                //Sets the times from the global array
+                $("#times").append("<p>" + time[i] + "</p>");
+
+                //This if/else block will set the colors of the text areas depending on the time according to moment js
+                if (parseInt(time[i]) < moment().format("k")) {
+                    inputArea[i].css("background-color", "lightslategrey");
+                    $("#input").append(inputArea[i]);
+                    $("#input").append($("<br>"));
+                } else if (parseInt(time[i]) === moment().format("k")) {
+                    inputArea[i].css("background-color", "red");
+                    $("#input").append(inputArea[i]);
+                    $("#input").append($("<br>"));
+                } else {
+                    $("#input").append(inputArea[i]);
+                    $("#input").append($("<br>"));
+                }
+
+                //This set the save buttons in the approipriate col
+                saveButton[i].text("Save");
+                $("#save").append(saveButton[i]);
+                $("#save").append($("<br>"));
+            }
+
+
+
+        }
+
+        //Set the date for the schedule description
+        function setDescriptonDate() {
+            var date = moment().format("MMM Do YYYY");
+            $("#description").append(date);
+        }
+
+        //This is a failed attempt to parse the text areas for changes and then would save them and reload the page couldn't get the parsing figured out
+        function saveInputArea(key) {
+
+            console.log($("#9").value);
+            console.log("We made it here!")
+            console.log(inputArea[key]);
+            console.log(inputArea[key].value);
+
+
+        }
+
+        //Calling the functions to get everything running 
+        renderPlanner();
+        setDescriptonDate();
+    </script>
+</body>
+
+</html>
